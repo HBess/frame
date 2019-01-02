@@ -54,3 +54,12 @@ bool Frame::readOneFrame420(FILE *pIn, const int frameNo)
     return true;
 }
 
+void Frame::showImage(const std::string &windowname)
+{
+    cv::Mat picYV12 = cv::Mat(m_height * 3/2, m_width, CV_8UC1, &(m_image[0]));
+    cv::cvtColor(picYV12, m_picBGR, CV_YUV2BGR_YV12);
+
+    cv::imshow(windowname.c_str(),m_picBGR);
+    cvWaitKey(1);
+}
+
